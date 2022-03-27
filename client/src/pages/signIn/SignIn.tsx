@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import {
   Button,
   DialogActions,
-  DialogContent,
   FormControl,
   makeStyles,
   TextField,
@@ -88,6 +87,9 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 0,
     },
   },
+  loginSideField: {
+    width: 400,
+  },
 }));
 
 const SignIn: FC = () => {
@@ -169,6 +171,7 @@ const SignIn: FC = () => {
       >
         <FormControl>
           <TextField
+            className={classes.loginSideField}
             autoFocus
             type="email"
             id="email"
@@ -180,6 +183,7 @@ const SignIn: FC = () => {
             fullWidth
           />
           <TextField
+            className={classes.loginSideField}
             autoFocus
             type="password"
             id="password"
@@ -208,6 +212,18 @@ const SignIn: FC = () => {
       >
         <FormControl>
           <TextField
+            className={classes.loginSideField}
+            autoFocus
+            id="name"
+            label="Имя"
+            variant="filled"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+          />
+          <TextField
+            className={classes.loginSideField}
             autoFocus
             type="email"
             id="email"
@@ -219,6 +235,7 @@ const SignIn: FC = () => {
             fullWidth
           />
           <TextField
+            className={classes.loginSideField}
             autoFocus
             type="password"
             id="password"
@@ -234,7 +251,7 @@ const SignIn: FC = () => {
             Отмена
           </Button>
           <Button onClick={handleClickCloseSignInModal} color="primary">
-            Сохранить
+            Далее
           </Button>
         </DialogActions>
       </Modal>
