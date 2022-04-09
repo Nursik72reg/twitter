@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Button, Hidden, IconButton, Typography } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
@@ -9,9 +9,20 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import CreateIcon from "@material-ui/icons/Create";
 import { sideMenuStyles } from "./styles";
+import Modal from "../modal/Modal";
+import AddTweetForm from "../addTweetForm/AddTweetForm";
 
 const SideMenu: FC = () => {
   const classes = sideMenuStyles();
+  const [visibleAddTweet, setVisibleAddTweet] = useState<boolean>(false);
+
+  const onCloseAddTweet = () => {
+    setVisibleAddTweet(false);
+  };
+
+  const handleClickOpenAddTweet = () => {
+    setVisibleAddTweet(true);
+  };
 
   return (
     <ul className={classes.sideMenuList}>
@@ -86,13 +97,18 @@ const SideMenu: FC = () => {
         </div>
       </li>
       <li className={classes.sideMenuListItem}>
-        <Button fullWidth color={"primary"} variant={"contained"}>
+        <Button onClick={handleClickOpenAddTweet} fullWidth color="primary" variant="contained">
           <Hidden smDown>Твитнуть</Hidden>
           <Hidden mdUp>
             <CreateIcon />
           </Hidden>
         </Button>
       </li>
+      <Modal title="Добавить" visible={visibleAddTweet} onClose={onCloseAddTweet}>
+        <div style={{ width: "550px" }}>
+          <AddTweetForm maxRows={15} />
+        </div>
+      </Modal>
     </ul>
   );
 };

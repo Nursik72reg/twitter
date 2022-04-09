@@ -10,9 +10,6 @@ export const addTweetStyleForm = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  addForm: {
-    padding: 20,
-  },
   addFormBottomActions: {
     marginTop: 10,
     paddingLeft: 70,

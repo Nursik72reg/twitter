@@ -6,7 +6,7 @@ import { Avatar, Button, CircularProgress, IconButton, TextareaAutosize } from "
 import { addTweetStyleForm } from "./styles";
 
 const MAX_LENGTH = 280;
-const AddTweetForm = () => {
+const AddTweetForm = ({ maxRows = 15 }: { maxRows?: number }) => {
   const classes = addTweetStyleForm();
   const [textArea, setTextArea] = useState<string>("");
   const textLimitPercent = Math.round((textArea.length / 280) * 100);
@@ -18,14 +18,20 @@ const AddTweetForm = () => {
     }
   };
 
+  const handleClickAddTweeter = (): void => {
+    setTextArea("");
+  };
+
   return (
-    <div className={classes.addForm}>
+    <div>
       <div className={classes.addFormBody}>
         <Avatar alt={"Аватарка пользователя"} src={"asdads"} className={classes.tweetAvatar} />
         <TextareaAutosize
+          value={textArea}
           onChange={handleChangeTextArea}
           className={classes.addFormTextArea}
           placeholder="Что происходит"
+          maxRows={maxRows}
         />
       </div>
       <div className={classes.addFormBottom}>
@@ -43,14 +49,14 @@ const AddTweetForm = () => {
               <span>{textCount}</span>
               <div className={classes.addFormCircleProgress}>
                 <CircularProgress
-                  variant={"static"}
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={textArea.length > MAX_LENGTH ? 100 : textLimitPercent}
                   style={textArea.length > MAX_LENGTH ? { color: "red" } : undefined}
                 />
                 <CircularProgress
-                  variant={"static"}
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={100}
@@ -60,7 +66,12 @@ const AddTweetForm = () => {
             </>
           )}
 
-          <Button disabled={textArea.length > MAX_LENGTH} color={"primary"} variant={"outlined"}>
+          <Button
+            onClick={handleClickAddTweeter}
+            disabled={textArea.length > MAX_LENGTH}
+            color="primary"
+            variant="outlined"
+          >
             Твитнуть
           </Button>
         </div>

@@ -9,7 +9,7 @@ import { tweetStyles } from "./styles";
 interface TweetProps {
   text: string;
   user: {
-    fillName: string;
+    fullName: string;
     userName: string;
     avatarUrl: string;
   };
@@ -18,15 +18,15 @@ interface TweetProps {
 const Tweet: FC<TweetProps> = ({ text, user }: TweetProps) => {
   const classes = tweetStyles();
   return (
-    <Paper className={classes.tweet} variant={"outlined"}>
+    <Paper className={classes.tweet} variant="outlined">
       <Avatar
         className={classes.tweetAvatar}
-        alt={`Аватарка пользователя ${user.fillName}`}
+        alt={`Аватарка пользователя ${user.fullName}`}
         src={user.avatarUrl}
       />
       <div className={classes.tweetInformation}>
         <Typography>
-          <b>{user.fillName}</b>
+          <b>{user.fullName}</b>
           <span className={classes.tweetUserName}>@{user.userName}</span>&nbsp;
           <span className={classes.tweetUserName}>.</span>&nbsp;
           <span className={classes.tweetUserName}>3 ч</span>
