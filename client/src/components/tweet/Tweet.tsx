@@ -11,7 +11,7 @@ interface TweetProps {
   user: {
     fullName: string;
     userName: string;
-    avatarUrl: string;
+    avatarUrl:
   };
 }
 
